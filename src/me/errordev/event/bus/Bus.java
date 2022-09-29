@@ -55,7 +55,7 @@ public class Bus {
 
     public <U extends Event> U call(final Class<? extends U> event) {
         final U e = getEvent(event);
-        for (Triple<Object, Listener<Event>, Class<?>> listener : listeners) {
+        for (Triple<Object, Listener<Event>, Class<?>> listener : new ArrayList<>(this.listeners)) {
             if (!listener.getThird().equals(event))
                 continue;
             listener.getSecond().onEvent(e);
